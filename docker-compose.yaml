@@ -1,0 +1,36 @@
+version: '3.9'
+services:
+  db:
+    build:
+      context: ./database
+      dockerfile: Dockerfile
+    container_name: postgres_container
+    ports:
+      - "5433:5432"
+    environment:
+      POSTGRES_USER: justas
+      POSTGRES_PASSWORD: justas
+      POSTGRES_DB: subscription
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - backend_network
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: spring_boot_container
+    ports:
+      - "8092:8091"
+    depends_on:
+      - db
+    networks:
+      - backend_network
+    restart: always
+
+volumes:
+  postgres_data:
+
+networks:
+  backend_network:

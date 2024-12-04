@@ -1,0 +1,3 @@
+CREATE DATABASE subscription;
+CREATE USER justas WITH ENCRYPTED PASSWORD 'justas';
+GRANT ALL PRIVILEGES ON DATABASE subscription TO justas;
