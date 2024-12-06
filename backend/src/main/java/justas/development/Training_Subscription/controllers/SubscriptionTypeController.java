@@ -10,11 +10,11 @@ import java.util.Optional;
 
 @RestController()
 @RequestMapping("/api/subscriptiontype")
+@CrossOrigin(origins = "*")  // Allow requests from any origin
 public class SubscriptionTypeController {
     private final SubscriptionTypeService subscriptionTypeService;
 
     @Autowired
-
     public SubscriptionTypeController(SubscriptionTypeService subscriptionTypeService) {
         this.subscriptionTypeService = subscriptionTypeService;
     }

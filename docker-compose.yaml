@@ -9,11 +9,11 @@ services:
       POSTGRES_PASSWORD: justas
       POSTGRES_DB: subscription
     volumes:
-      - postgres_data:/var/lib/postgresql/data
+      - ./database/init.sql:/docker-entrypoint-initdb.d/init.sql
     networks:
       - backend_network
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U justas"]
+      test: ["CMD-SHELL", "pg_isready -U justas -d subscription"]
       interval: 10s
       timeout: 5s
       retries: 5
@@ -24,7 +24,7 @@ services:
       dockerfile: Dockerfile
     container_name: spring_boot_container
     ports:
-      - "8092:8080"
+      - "8092:8090"
     depends_on:
       db:
         condition: service_healthy
@@ -41,3 +41,5 @@ volumes:
 
 networks:
   backend_network:
+    driver: bridge
+

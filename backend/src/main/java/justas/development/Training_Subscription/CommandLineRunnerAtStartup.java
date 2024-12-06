@@ -4,9 +4,12 @@ import justas.development.Training_Subscription.models.SUBSCRIPTION_TITLE;
 import justas.development.Training_Subscription.models.SubscriptionType;
 import justas.development.Training_Subscription.repositories.SubscriptionTypeRepository;
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.context.annotation.DependsOn;
 import org.springframework.stereotype.Component;
 
 @Component
+@DependsOn("entityManagerFactory")
+
 public class CommandLineRunnerAtStartup implements CommandLineRunner {
 
     private final SubscriptionTypeRepository subscriptionTypeRepository;
