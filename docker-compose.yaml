@@ -20,7 +20,7 @@ services:
 
   backend:
     build:
-      context: ./backend
+      context: ./backend/Training-Subscription
       dockerfile: Dockerfile
     container_name: spring_boot_container
     ports:
@@ -35,6 +35,7 @@ services:
       SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/subscription
       SPRING_DATASOURCE_USERNAME: justas
       SPRING_DATASOURCE_PASSWORD: justas
+      SPRING_JPA_HIBERNATE_DDL_AUTO: create
 
 volumes:
   postgres_data:
